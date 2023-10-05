@@ -5,5 +5,8 @@ export const userRoutes = () => {
   const router = Router();
 
 
-  router.get("/", new UserController().list);
+  router.get("/list", new UserController().list);
+  router.post("/create", new UserController().create);
+
+  return router
 };

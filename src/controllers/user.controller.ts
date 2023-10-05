@@ -1,15 +1,29 @@
 import { Request, Response } from "express";
+import userService from "../services/user.service";
 
 export default class UserController {
-  public list(req: Request, res: Response) {
-    return res.status(200).send({
-      success: true,
-      message: "Listagem de usuário",
-      data: [],
-    });
+  public async list(req: Request, res: Response) {
+    const result = await userService.listAll()
+    return res.status(200).send(result);
   }
 
-  public create(req: Request, res: Response) {}
+  public async create(req: Request, res: Response) {
+    try {
+        const {name, address,password, phone , cpf } = req.body
+
+        const result = await userService.create({
+            name, phone, address, cpf, password
+        })
+
+        return res.status(result.code).send(result)
+
+    } catch (error:any) {
+        res.status(500).send({
+            ok: false,
+            message: error.toString(),
+        });
+    }
+  }
 
   public show(req: Request, res: Response) {}
 

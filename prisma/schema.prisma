@@ -11,14 +11,74 @@ datasource db {
 }
 
 model User {
-  id String @id @db.Uuid @default(uuid())
+  id       String  @id @default(uuid()) @db.Uuid
+  name     String
+  address  String
+  password String?
+  phone    String
+  cpf      String
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  Sale      Sale[]
+
+  @@map("user")
+}
+
+model Factory {
+  id   String @id @default(uuid()) @db.Uuid
   name String
-  address String
-  phone String
-  cpf String
+  car  Car[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@map("user")
+  @@map("factory")
+}
+
+model Car {
+  id              String  @id @default(uuid()) @db.Uuid
+  name            String
+  yearFabrication String  @map("year_fabrication")
+  factory         Factory @relation(fields: [factoryId], references: [id])
+  factoryId       String  @map("factory_id") @db.Uuid
+
+  battery Battery[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  Sale      Sale[]
+
+  @@map("car")
+}
+
+model Battery {
+  id       String @id @default(uuid()) @db.Uuid
+  name     String
+  cca      String
+  warranty String
+  quantity Int
+  price    Float
+
+  car Car[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  Sale      Sale[]
+
+  @@map("battery")
+}
+
+model Sale {
+  id        String  @id @default(uuid()) @db.Uuid
+  UserId    User    @relation(fields: [userId], references: [id])
+  BatteryId Battery @relation(fields: [batteryId], references: [id])
+  CarId     Car     @relation(fields: [carId], references: [id])
+
+  userId    String @map("user_id") @db.Uuid
+  batteryId String @map("battery_id") @db.Uuid
+  carId     String @map("car_id") @db.Uuid
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 }
