@@ -15,7 +15,9 @@ class BatteryService{
                 warranty:battery.warranty,
                 quantity: battery.quantity,
                 price: battery.price
-            }
+            },
+            
+            
         })
 
         return {
@@ -24,6 +26,8 @@ class BatteryService{
             data: createdBattery
         }
     }
+
+
 }
 
 export default new BatteryService

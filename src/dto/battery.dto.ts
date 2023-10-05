@@ -4,4 +4,5 @@ export interface CreateBatteryDto{
     warranty: string
     quantity: number
     price:number
+
 }

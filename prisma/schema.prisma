@@ -39,7 +39,7 @@ model Factory {
 model Car {
   id              String  @id @default(uuid()) @db.Uuid
   name            String
-  yearFabrication String  @map("year_fabrication")
+  yearFabrication Int  @map("year_fabrication")
   factory         Factory @relation(fields: [factoryId], references: [id])
   factoryId       String  @map("factory_id") @db.Uuid
 

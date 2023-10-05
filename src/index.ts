@@ -4,6 +4,7 @@ import * as dotenv from "dotenv";
 import { userRoutes } from "./routes/user.routes";
 import { factoryRoutes } from "./routes/factory.routes";
 import { batteryRoutes } from "./routes/battery.routes";
+import { carRoutes } from "./routes/car.routes";
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ const port = process.env.PORT;
 app.use("/users", userRoutes());
 app.use("/factory", factoryRoutes());
 app.use("/battery", batteryRoutes());
+app.use("/car", carRoutes());
 
 app.listen(port, () => {
   console.log(`Server running at port: ${port}`);
