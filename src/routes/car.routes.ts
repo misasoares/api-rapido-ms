@@ -8,6 +8,8 @@ export const carRoutes = ()=>{
 
     router.post('/create', new CarController().create)
     router.get('/list', new CarController().list)
+    router.post('/add-battery-to-car', new CarController().addBatteryToCar)
+
 
 
     return router

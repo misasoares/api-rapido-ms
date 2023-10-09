@@ -19,4 +19,18 @@ export default class AuthController {
       return res.status(200).send(update);
     }
   }
+
+  public async delete(req: Request, res: Response) {
+    const { token } = req.headers;
+
+    const user = await userService.getByToken(token as string);
+
+    if (user) {
+      await userService.update({ ...user, token: null });
+
+      return res.status(200).send({ message: "Logout success." });
+    }
+
+    return res.status(404).send({ message: "Logout not found" });
+  }
 }

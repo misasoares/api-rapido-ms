@@ -6,3 +6,8 @@ export interface CreateBatteryDto{
     price:number
 
 }
+
+export interface AddBatteryToCar{
+    batteryId:string
+    carId:string
+}

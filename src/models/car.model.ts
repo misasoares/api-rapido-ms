@@ -2,7 +2,7 @@ import { v4 as uuid } from "uuid";
 
 export class Car {
   private _id: string;
-  constructor(private _name: string, private _yearFabrication: number, private _factoryId: string, private _batteryId:string) {
+  constructor(private _name: string, private _yearFabrication: number, private _factoryId: string, private _batteryId:string[]) {
     this._id = uuid();
   }
 

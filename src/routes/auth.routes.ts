@@ -6,7 +6,8 @@ import AuthController from "../controllers/auth.controller";
 export const authRoutes = () => {
   const router = Router();
 
-  router.post("/", new AuthController().create);
+  router.post("/login", new AuthController().create);
+  router.get('/logout', new AuthController().delete)
 
 
   return router;

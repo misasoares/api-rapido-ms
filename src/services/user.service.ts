@@ -80,11 +80,12 @@ class UserService {
     const user = await repository.user.findUnique({
       where: {
         token: token,
-      },
+      }
     });
 
     return user;
   }
+
 }
 
 export default new UserService();

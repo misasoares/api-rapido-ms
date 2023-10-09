@@ -7,6 +7,7 @@ export const userRoutes = () => {
 
   router.get("/list", authMiddleware, new UserController().list);
   router.post("/create", new UserController().create);
+  router.get('/get-user-logged', authMiddleware, new UserController().show)
 
   return router;
 };

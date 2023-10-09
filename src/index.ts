@@ -6,6 +6,7 @@ import { factoryRoutes } from "./routes/factory.routes";
 import { batteryRoutes } from "./routes/battery.routes";
 import { carRoutes } from "./routes/car.routes";
 import { authRoutes } from "./routes/auth.routes";
+import { saleRoutes } from "./routes/sale.routes";
 
 dotenv.config();
 
@@ -20,7 +21,8 @@ app.use("/users", userRoutes());
 app.use("/factory", factoryRoutes());
 app.use("/battery", batteryRoutes());
 app.use("/car", carRoutes());
-app.use('/login', authRoutes())
+app.use('/auth', authRoutes())
+app.use('/sale', saleRoutes())
 
 app.listen(port, () => {
   console.log(`Server running at port: ${port}`);

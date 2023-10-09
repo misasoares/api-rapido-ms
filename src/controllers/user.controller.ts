@@ -29,7 +29,17 @@ export default class UserController {
     }
   }
 
-  public show(req: Request, res: Response) {}
+  public async show(req: Request, res: Response) {
+    try {
+      const { token } = req.headers;
+    const result = await userService.getByToken(token as string)
+    
+    return res.status(200).send(result)
+
+    } catch (error) {
+      return res.status(500).send(error)
+    }
+  }
 
   public update(req: Request, res: Response) {}
 

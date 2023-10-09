@@ -11,5 +11,5 @@ export interface UpdateUserDto {
   id: string;
   email?: string;
   password?: string;
-  token?: string;
+  token?: string | null;
 }
