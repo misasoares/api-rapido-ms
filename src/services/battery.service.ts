@@ -4,6 +4,12 @@ import { ResponseDto } from "../dto/response.dto";
 import { Battery } from "../models/battery.model";
 
 class BatteryService{
+
+    public async listAll(){
+        const result = await repository.battery.findMany()
+        return result
+    }
+
     public async create(data:CreateBatteryDto):Promise<ResponseDto>{
 
         const battery = new Battery(data.name, data.cca, data.warranty, data.quantity, data.price)
