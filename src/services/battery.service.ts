@@ -7,16 +7,21 @@ class BatteryService{
 
     public async listAll(){
         const result = await repository.battery.findMany()
-        return result
+        return {
+            code:200,
+            message:"Lista de baterias",
+            data: result
+        }
     }
 
     public async create(data:CreateBatteryDto):Promise<ResponseDto>{
 
-        const battery = new Battery(data.name, data.cca, data.warranty, data.quantity, data.price)
+        const battery = new Battery(data.name,data.amper ,data.cca, data.warranty, data.quantity, data.price)
 
         const createdBattery = await repository.battery.create({
             data:{
                 name: battery.name,
+                amper: battery.amper,
                 cca: battery.cca,
                 warranty:battery.warranty,
                 quantity: battery.quantity,
@@ -27,7 +32,7 @@ class BatteryService{
         })
 
         return {
-            code:200,
+            code:201,
             message:"Bateria criada com sucesso.",
             data: createdBattery
         }

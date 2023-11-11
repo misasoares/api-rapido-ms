@@ -12,7 +12,8 @@ async function authMiddleware(req: Request, res: Response, next: NextFunction) {
     const user = await userService.getByToken(token as string);
     if (!user) {
       return res.status(401).send({ message: "Authentication token fail." });
-    }
+    } 
+    req.body.userID = user.id
 
     next();
   } catch (error) {

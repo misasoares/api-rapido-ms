@@ -4,7 +4,8 @@ import BatteryController from "../controllers/battery.controller";
 export const batteryRoutes = () => {
   const router = Router();
 
-  router.post("/create", new BatteryController().create);
+  router.post("/criar", new BatteryController().create);
+  router.get('/pegar', new BatteryController().list)
   
   return router;
 };

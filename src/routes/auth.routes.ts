@@ -7,7 +7,7 @@ export const authRoutes = () => {
   const router = Router();
 
   router.post("/login", new AuthController().create);
-  router.get('/logout', new AuthController().delete)
+  router.get('/logout', authMiddleware ,new AuthController().delete)
 
 
   return router;

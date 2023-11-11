@@ -4,16 +4,17 @@ import { v4 as uuid } from "uuid";
 
 export default class AuthController {
   public async create(req: Request, res: Response) {
-    const { email, paswsword } = req.body;
+    const { email, password } = req.body;
 
-    const user = await userService.getUserByEmailAndPassword(email, paswsword);
+    const user = await userService.getUserByEmailAndPassword(email, password);
 
-    if (!user) {
-      return res.status(401).send({ message: "Email or password wrong" });
+    if(user.code === 401){
+       return res.status(401).send(user);
     }
 
     const token = uuid();
-    const update = await userService.update({ ...user, token });
+   
+    const update = await userService.update({ ...user.data, token });
 
     if (update.code === 200) {
       return res.status(200).send(update);
@@ -26,7 +27,7 @@ export default class AuthController {
     const user = await userService.getByToken(token as string);
 
     if (user) {
-      await userService.update({ ...user, token: null });
+      await userService.update({ ...user.data, token: null });
 
       return res.status(200).send({ message: "Logout success." });
     }

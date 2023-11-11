@@ -18,11 +18,11 @@ app.use(cors());
 const port = process.env.PORT;
 
 app.use("/users", userRoutes());
-app.use("/factory", factoryRoutes());
-app.use("/battery", batteryRoutes());
-app.use("/car", carRoutes());
+app.use("/factories", factoryRoutes());
+app.use("/batteries", batteryRoutes());
+app.use("/cars", carRoutes());
 app.use('/auth', authRoutes())
-app.use('/sale', saleRoutes())
+app.use('/sales', saleRoutes())
 
 app.listen(port, () => {
   console.log(`Server running at port: ${port}`);

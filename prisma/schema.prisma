@@ -57,8 +57,9 @@ model Car {
 model Battery {
   id       String @id @default(uuid()) @db.Uuid
   name     String
-  cca      String
-  warranty String
+  amper    Int
+  cca      Int
+  warranty Int
   quantity Int
   price    Float
 

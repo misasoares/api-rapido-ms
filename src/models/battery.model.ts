@@ -2,7 +2,7 @@ import { v4 as uuid } from "uuid";
 
 export class Battery {
   private _id: string;
-  constructor(private _name: string, private _cca: string, private _warranty: string, private _quantity: number, private _price: number) {
+  constructor(private _name: string,private _amper:number ,private _cca: number, private _warranty: number, private _quantity: number, private _price: number) {
     this._id = uuid();
   }
 
@@ -26,6 +26,9 @@ export class Battery {
   }
   public get price() {
     return this._price;
+  }
+  public get amper(){
+    return this._amper
   }
   
 

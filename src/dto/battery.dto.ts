@@ -1,7 +1,8 @@
 export interface CreateBatteryDto{
     name: string
-    cca:string
-    warranty: string
+    amper: number
+    cca:number
+    warranty: number
     quantity: number
     price:number
 

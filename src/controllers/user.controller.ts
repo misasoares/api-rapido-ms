@@ -31,13 +31,12 @@ export default class UserController {
 
   public async show(req: Request, res: Response) {
     try {
-      const { token } = req.headers;
-    const result = await userService.getByToken(token as string)
-    
-    return res.status(200).send(result)
+      const { userID } = req.body;
+      const result = await userService.getByToken(userID);
 
+      return res.status(200).send(result);
     } catch (error) {
-      return res.status(500).send(error)
+      return res.status(500).send(error);
     }
   }
 

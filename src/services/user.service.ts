@@ -3,6 +3,7 @@ import repository from "../database/prisma.database";
 import { ResponseDto } from "../dto/response.dto";
 import { CreateUserDto, UpdateUserDto } from "../dto/user.dto";
 import { User } from "../models/user.model";
+import { response } from "express";
 
 class UserService {
   public async listAll(): Promise<ResponseDto> {
@@ -44,6 +45,7 @@ class UserService {
       return {
         code: 404,
         message: "User not found",
+        data:null
       };
     }
 
@@ -65,7 +67,7 @@ class UserService {
     };
   }
 
-  public async getUserByEmailAndPassword(email: string, password: string) {
+  public async getUserByEmailAndPassword(email: string, password: string):Promise<ResponseDto> {
     const user = await repository.user.findUnique({
       where: {
         email: email,
@@ -73,19 +75,32 @@ class UserService {
       },
     });
 
-    return user;
+    if(user){
+
+      return {code:200, message:"Usuario encontrado.", data:user};
+    }
+    return {code:401, message:"Usuario não encontrado.", data:user}
   }
 
-  public async getByToken(token: string) {
+  public async getByToken(token: string): Promise<ResponseDto> {
     const user = await repository.user.findUnique({
       where: {
         token: token,
-      }
+      },
     });
 
-    return user;
+    return { code: 200, message: "usuario encontrado.", data: user };
   }
 
+  public async getById(userId: string): Promise<ResponseDto> {
+    const user = await repository.user.findUnique({
+      where: {
+        id: userId,
+      },
+    });
+
+    return { code: 200, message: "usuario encontrado.", data: user };
+  }
 }
 
 export default new UserService();
