@@ -13,9 +13,10 @@ export default class BatteryController {
 
   public async create(req: Request, res: Response) {
     try {
-      const { name, amper, cca, warranty, quantity, price } = req.body;
+      const {img, name, amper, cca, warranty, quantity, price } = req.body;
 
       const result = await batteryService.create({
+        img,
         name,
         amper,
         cca,

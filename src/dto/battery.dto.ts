@@ -1,4 +1,5 @@
 export interface CreateBatteryDto{
+    img:string
     name: string
     amper: number
     cca:number

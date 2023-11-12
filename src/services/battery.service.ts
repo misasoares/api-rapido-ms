@@ -16,10 +16,11 @@ class BatteryService{
 
     public async create(data:CreateBatteryDto):Promise<ResponseDto>{
 
-        const battery = new Battery(data.name,data.amper ,data.cca, data.warranty, data.quantity, data.price)
+        const battery = new Battery(data.img,data.name,data.amper ,data.cca, data.warranty, data.quantity, data.price)
 
         const createdBattery = await repository.battery.create({
             data:{
+                img:battery.img,
                 name: battery.name,
                 amper: battery.amper,
                 cca: battery.cca,

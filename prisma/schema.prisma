@@ -56,6 +56,7 @@ model Car {
 
 model Battery {
   id       String @id @default(uuid()) @db.Uuid
+  img      String
   name     String
   amper    Int
   cca      Int
